@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jejak Simbol: Ekspedisi Koreografer Nusantara</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#f2f4f8;--fg:#16203a;--card:#fff;--mut:#5b6580;--ac:#b9770a;--acbg:#fdf1d8;--ok:#1b7a52;--okbg:#e2f4ea;--bad:#b3382c;--badbg:#fbe6e3;--bd:#d5dae6;--nav:#1f2a5c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10162b;--fg:#e8ebf5;--card:#192242;--mut:#a3adcb;--ac:#f0b84a;--acbg:#3a2f12;--ok:#5fd09a;--okbg:#14352a;--bad:#ff8f84;--badbg:#3d1c1a;--bd:#2c3862;--nav:#0b1022;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10162b;--fg:#e8ebf5;--card:#192242;--mut:#a3adcb;--ac:#f0b84a;--acbg:#3a2f12;--ok:#5fd09a;--okbg:#14352a;--bad:#ff8f84;--badbg:#3d1c1a;--bd:#2c3862;--nav:#0b1022;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque",Georgia,sans-serif;line-height:1.15;margin:0 0 .4em}
+header{background:var(--nav);color:#fff;padding:22px 16px 18px}
+.wrap{max-width:820px;margin:0 auto}
+header h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin:0}
+header p{margin:.4em 0 0;color:#cfd6ee;max-width:62ch}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.sc{background:#ffffff1a;border-radius:10px;padding:6px 14px;text-align:center}
+.sc b{display:block;font:800 1.6rem "Bricolage Grotesque",sans-serif;color:#f0b84a}
+#map{display:flex;gap:0;margin:18px auto 0;max-width:820px;padding:0 16px}
+.node{flex:1;text-align:center;position:relative;font-size:.8rem;color:var(--mut)}
+.node span{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 4px;border-radius:50%;background:var(--card);border:2px dashed var(--bd);font-size:1.4rem;position:relative;z-index:1}
+.node:not(:last-child)::after{content:"";position:absolute;top:23px;left:50%;width:100%;border-top:3px dotted var(--bd)}
+.node.on span{border:3px solid var(--ac);background:var(--acbg)}
+.node.on{color:var(--fg)}
+.node.done span{border:2px solid var(--ok);background:var(--okbg)}
+.node.done::after{border-top-color:var(--ok)}
+.node b{display:block;font-weight:600}
+main{max-width:820px;margin:18px auto 40px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:16px}
+.quest{background:var(--acbg);border-left:4px solid var(--ac);padding:8px 12px;border-radius:6px}
+.q{border-top:1px solid var(--bd);padding-top:14px;margin-top:14px}
+.pts{font-size:.78rem;background:var(--acbg);color:var(--ac);border-radius:99px;padding:1px 9px;white-space:nowrap;font-weight:600}
+label{display:block;padding:6px 8px;border-radius:8px;cursor:pointer}
+label:hover{background:var(--bg)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.row>span:first-child{flex:1 1 260px}
+.tf{display:flex;gap:4px}.tf label{display:inline-block}
+select,textarea{font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:6px}
+select{max-width:100%}textarea{width:100%;min-height:80px;margin:4px 0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.col{border:2px dashed var(--bd);border-radius:10px;padding:6px;min-height:110px}
+.col h4{font-size:.95rem;text-align:center;color:var(--mut)}
+.drop,.pool{display:flex;flex-wrap:wrap;gap:6px;min-height:34px}
+.pool{border:1px solid var(--bd);border-radius:10px;padding:8px;background:var(--bg)}
+.cd{background:var(--nav);color:#fff;border-radius:8px;padding:5px 10px;font-size:.88rem;cursor:grab;user-select:none}
+.cd.sel{outline:3px solid var(--ac)}
+.ord{padding:0;list-style:none;counter-reset:o}
+.ord li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;margin:5px 0;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
+button{font:inherit;cursor:pointer}
+.mv{border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:6px;padding:2px 8px;margin-left:4px}
+.btn{background:var(--nav);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-weight:600;margin-top:16px}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.mv:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.fb{font-size:.9rem;margin-top:6px;color:var(--mut)}
+.fb b{color:var(--fg)}
+.res{border-radius:12px;padding:14px;margin-top:16px}
+.res.ok{background:var(--okbg);border:1px solid var(--ok)}.res.bad{background:var(--badbg);border:1px solid var(--bad)}
+details{background:var(--bg);border-radius:8px;padding:8px 12px;margin:8px 0;font-size:.92rem}
+summary{cursor:pointer;font-weight:600}
+.case{background:var(--bg);border-radius:8px;padding:10px 12px;margin:8px 0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.badges span{background:var(--acbg);border-radius:99px;padding:4px 12px;font-weight:600}
+@media (max-width:560px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="top"><div><h1>Jejak Simbol</h1><div style="font:600 1rem 'Bricolage Grotesque',sans-serif;color:#f0b84a">Ekspedisi Koreografer Nusantara</div></div>
+<div class="sc"><b id="score">0</b>poin</div></div>
+<p>Selendang Aksara, selendang kuno yang bisa “berbicara” lewat gerak, terpecah menjadi empat bagian. Jelajahi empat zona, kuasai seni mengubah makna menjadi tari, dan satukan kembali selendangnya di Panggung Garuda.</p>
+</div></header>
+<div id="map"></div>
+<main><div id="panel" class="card"></div></main>
+<script>
+const $=s=>document.querySelector(s),L="ABCDEFGH",R=["I","II","III","IV"];
+const sh=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]);
+const Z=[
+{e:"🌿",n:"Hutan Aksara Gerak",b:"Pembaca Simbol",quest:"Membedakan gerak murni dan gerak maknawi, serta mengenali simbol dalam tari (gerak, warna busana, properti, pola lantai).",hint:"Gerak murni mengutamakan keindahan bentuk, sedangkan gerak maknawi membawa makna. Simbol bisa berupa gerak, warna, properti, dan pola lantai, dan maknanya perlu dikonsepkan dengan matang.",
+q:[{t:"mc",pts:10,q:"Seorang koreografer menciptakan gerak kedua tangan membuka perlahan dari depan dada ke atas, menyerupai kuncup bunga yang mekar, untuk menggambarkan harapan. Gerak ini termasuk…",o:["Gerak murni","Gerak maknawi","Gerak penghubung","Gerak berpindah tempat"],a:1},
+{t:"pgk",pts:20,q:"Pilih SEMUA pernyataan yang benar tentang simbol dalam tari kreasi:",o:["Simbol dapat hadir melalui gerak, warna busana, properti, dan pola lantai.","Makna sebuah simbol pasti sama di semua budaya.","Properti seperti kipas atau selendang dapat dimaknai sesuai konsep koreografer.","Simbol dalam tari harus selalu dijelaskan lewat dialog atau teks.","Makna simbol perlu dikonsepkan matang agar tidak menimbulkan tafsir yang jauh dari maksud."],a:[0,2,4]}]},
+{e:"🏞️",n:"Lembah Eksplorasi",b:"Penjelajah Gerak",quest:"Menjelaskan tahap eksplorasi dan mengklasifikasikan gerak berdasarkan elemen ruang, waktu, dan tenaga.",hint:"Eksplorasi mendahului komposisi. Ruang: level, arah, jangkauan. Waktu: tempo, ritme, durasi. Tenaga: kuat–lemah, aksen, aliran gerak.",
+q:[{t:"tf",pts:20,q:"Tentukan Benar atau Salah untuk setiap pernyataan:",o:["Eksplorasi adalah penjajakan kemungkinan gerak dari rangsang ide (misalnya rangsang dengar, visual, atau gagasan).","Dalam proses penciptaan, komposisi dilakukan lebih dulu sebelum eksplorasi.","Tari kreasi boleh bertolak dari tari tradisi, namun diolah menjadi bentuk baru.","Tari kreasi berbasis simbol hanya boleh memakai satu simbol dan tidak boleh ditafsirkan penonton."],a:[1,0,1,0]},
+{t:"dd",pts:20,q:"Seret setiap kartu ke elemen tari yang tepat:",cols:["Ruang","Waktu","Tenaga"],o:[["Level rendah ke tinggi",0],["Arah hadap diagonal",0],["Jangkauan gerak lebar",0],["Tempo cepat",1],["Ritme sinkop",1],["Durasi panjang",1],["Hentakan kuat",2],["Aksen tajam",2],["Gerak mengalir",2]]}]},
+{e:"🏛️",n:"Candi Komposisi",b:"Penata Komposisi",quest:"Mengurutkan tahapan penciptaan tari dan menerapkan pengembangan motif untuk menguatkan makna simbol.",hint:"Urutan: tema dan simbol, eksplorasi, improvisasi, komposisi, evaluasi. Pengembangan motif: pengulangan, perubahan tempo, arah, dan level.",
+q:[{t:"ord",pts:20,q:"Susun tahapan penciptaan tari kreasi dengan urutan yang tepat (gunakan tombol ▲ ▼):",o:["Menentukan tema dan simbol yang diangkat","Eksplorasi","Improvisasi","Komposisi/pembentukan (menyusun motif, pola lantai, struktur)","Evaluasi dan penyempurnaan karya"]},
+{t:"mat",pts:20,q:"Jodohkan teknik pengembangan motif dengan contohnya:",l:["Pengulangan","Perubahan tempo","Perubahan arah","Perubahan level"],r:["Motif sama dilakukan dengan arah hadap berbeda","Motif diulang persis sama sebanyak tiga kali","Motif dilakukan dari cepat menjadi sangat lambat","Motif dilakukan dari berdiri menjadi posisi rendah/duduk"],a:[1,2,0,3]}]},
+{e:"👑",n:"Puncak Panggung Garuda",b:"Maestro Koreografer",quest:"Boss Battle “Sang Penafsir Keliru”: menganalisis dan merevisi karya tari agar simbolnya terbaca jelas oleh penonton.",hint:"",
+q:[{t:"boss",pts:60,ph:[
+["Fase 1: Bedah Simbol","Identifikasi minimal tiga simbol dalam karya dan makna yang dimaksud koreografer pada masing-masing.","Selendang biru = air; pola lantai melingkar yang menyempit = sumber air yang terancam/menyusut; tangan menengadah lalu merunduk = permohonan dan kepedulian."],
+["Fase 2: Diagnosis","Analisis dua alasan mengapa penonton salah menafsirkan karya ini.","Biru identik dengan laut sehingga bermakna ganda; tidak ada gerak yang menegaskan “bersih” atau “mata air”; konteks pementasan tidak mengantar penonton ke tema."],
+["Fase 3: Revisi Karya","Rancang dua perubahan konkret (gerak, properti, pola lantai, iringan, atau busana) dan jelaskan bagaimana perubahan itu mempertegas makna.","Tambah gerak menadah dan menjaga dengan properti kendi; ubah pola lantai menjadi lingkaran yang membuka kembali di akhir (air pulih); tambah iringan suara tetesan air sebagai pengantar tema."]]}]}];
+let cur=0,pen=0,zs=[],uid=0;
+function mk(q){
+ const u=++uid,el=document.createElement("div");el.className="q";el.pts=q.pts;
+ let h=`<p><b>${q.q||""}</b> <span class="pts">${q.pts} poin</span></p>`;
+ if(q.t=="mc")h+=q.o.map((o,i)=>`<label><input type="radio" name="n${u}" value="${i}"> ${L[i]}. ${o}</label>`).join("");
+ if(q.t=="pgk")h+=q.o.map((o,i)=>`<label><input type="checkbox" value="${i}"> ${o}</label>`).join("");
+ if(q.t=="tf")h+=q.o.map((o,i)=>`<div class="row"><span>${o}</span><span class="tf"><label><input type="radio" name="n${u}_${i}" value="1"> Benar</label><label><input type="radio" name="n${u}_${i}" value="0"> Salah</label></span></div>`).join("");
+ if(q.t=="dd")h+=`<div class="pool"></div><div class="cols">${q.cols.map((c,i)=>`<div class="col" data-c="${i}"><h4>${c}</h4><div class="drop"></div></div>`).join("")}</div><small>Seret kartu ke kolom, atau ketuk kartu lalu ketuk kolomnya.</small>`;
+ if(q.t=="ord")h+=`<ol class="ord"></ol>`;
+ if(q.t=="mat")h+=q.l.map((l,i)=>`<div class="row"><span>${i+1}. ${l}</span><select><option value="-1">Pilih…</option>${q.r.map((r,j)=>`<option value="${j}">${L[j]}. ${r}</option>`).join("")}</select></div>`).join("");
+ if(q.t=="boss")h+=`<div class="case"><b>Studi kasus:</b> Kelompok tari sekolah menciptakan karya berjudul <i>“Mata Air”</i> bertema pelestarian air bersih. Mereka memakai <b>selendang biru</b> yang dikibaskan lebar, <b>pola lantai melingkar yang makin menyempit</b>, dan <b>gerak tangan menengadah lalu merunduk</b>. Saat pementasan, penonton justru menafsirkan tarian itu sebagai “kisah nelayan dan laut”.</div>`+q.ph.map((p,i)=>`<div class="ph"><h4>${p[0]} <span class="pts">20 poin</span></h4><p>${p[1]}</p><textarea placeholder="Tulis jawaban kelompok…"></textarea><details><summary>Contoh jawaban kuat (untuk guru)</summary>${p[2]}</details><label>Skor rubrik (diisi guru/penilaian sejawat): <select class="bs"><option value="0">0–5: tidak relevan</option><option value="8">6–10: dangkal</option><option value="13">11–15: benar, kurang tajam</option><option value="18">16–20: lengkap dan logis</option></select></label></div>`).join("");
+ el.innerHTML=h+`<div class="fb"></div>`;
+ if(q.t=="dd"){let sel=null;const pool=el.querySelector(".pool"),put=t=>{if(sel){t.append(sel);sel.classList.remove("sel");sel=null}};
+  sh(q.o.map((o,i)=>i)).forEach(i=>{const c=document.createElement("span");c.className="cd";c.textContent=q.o[i][0];c.draggable=true;c.dataset.i=i;
+   c.ondragstart=e=>{sel=c;e.dataTransfer.setData("text","x")};
+   c.onclick=()=>{if(sel)sel.classList.remove("sel");sel=c;c.classList.add("sel")};pool.append(c)});
+  [pool,...el.querySelectorAll(".drop")].forEach(t=>{t.ondragover=e=>e.preventDefault();t.ondrop=e=>{e.preventDefault();e.stopPropagation();put(t)}});
+  el.querySelectorAll(".col").forEach(c=>c.onclick=e=>{if(!e.target.classList.contains("cd"))put(c.querySelector(".drop"))});
+  pool.onclick=e=>{if(!e.target.classList.contains("cd"))put(pool)}}
+ if(q.t=="ord"){const ol=el.querySelector("ol");
+  sh(q.o).forEach(t=>{const li=document.createElement("li");li.innerHTML=`<span>${t}</span><span><button type="button" class="mv" aria-label="Naik">▲</button><button type="button" class="mv" aria-label="Turun">▼</button></span>`;
+   const b=li.querySelectorAll("button");
+   b[0].onclick=()=>li.previousElementSibling&&ol.insertBefore(li,li.previousElementSibling);
+   b[1].onclick=()=>li.nextElementSibling&&ol.insertBefore(li.nextElementSibling,li);ol.append(li)})}
+ el.sc=()=>{let c=0,n=1,key="";const $$=s=>[...el.querySelectorAll(s)];
+  if(q.t=="mc"){const x=el.querySelector("input:checked");c=x&&+x.value==q.a?1:0;key="Kunci: "+L[q.a]}
+  if(q.t=="pgk"){const k=$$("input");n=k.length;c=k.filter((x,i)=>x.checked==q.a.includes(i)).length;key="Kunci: nomor "+q.a.map(i=>i+1).join(", ")}
+  if(q.t=="tf"){n=q.o.length;c=q.o.filter((o,i)=>{const x=el.querySelector(`input[name="n${u}_${i}"]:checked`);return x&&+x.value==q.a[i]}).length;key="Kunci: "+q.a.map((v,i)=>(i+1)+"-"+(v?"Benar":"Salah")).join(", ")}
+  if(q.t=="dd"){const cs=$$(".cd");n=cs.length;c=cs.filter(x=>{const k=x.closest(".col");return k&&+k.dataset.c==q.o[x.dataset.i][1]}).length;key="Kunci: "+q.cols.map((cn,j)=>cn+" = "+q.o.filter(o=>o[1]==j).map(o=>o[0]).join(", ")).join(" | ")}
+  if(q.t=="ord"){const li=$$("li");n=li.length;c=li.filter((x,i)=>x.firstChild.textContent==q.o[i]).length;key="Kunci urutan: "+q.o.map((o,i)=>(i+1)+". "+o.split(" (")[0]).join(" → ")}
+  if(q.t=="mat"){const s=$$("select");n=s.length;c=s.filter((x,i)=>+x.value==q.a[i]).length;key="Kunci: "+q.a.map((j,i)=>(i+1)+"-"+L[j]).join(", ")}
+  if(q.t=="boss"){return{s:$$(".bs").reduce((a,x)=>a+ +x.value,0),key:"Skor dari rubrik penilaian."}}
+  return{s:Math.round(q.pts*c/n),key}};
+ return el}
+function show(){
+ const fin=cur>=4;
+ $("#map").innerHTML=Z.map((z,i)=>`<div class="node ${i<cur?"done":i==cur?"on":""}"><span>${i<cur?"✅":z.e}</span><b>Zona ${i+1}</b>${z.n}</div>`).join("");
+ const tot=zs.reduce((a,b)=>a+b,0)-pen;$("#score").textContent=tot;
+ const p=$("#panel");
+ if(fin){const r=tot>=150?"Maestro Koreografer":tot>=120?"Koreografer Muda":"Penata Magang";
+  p.innerHTML=`<h2>Selendang Aksara utuh! 🎉</h2><p>Peringkat sanggar Anda: <b>${r}</b> dengan <b>${tot}</b> dari 170 poin.</p><div class="badges">${Z.map(z=>`<span>${z.e} ${z.b}</span>`).join("")}</div><p><b>Refleksi:</b> simbol apa yang akan kelompokmu pakai di karya tari berikutnya, dan bagaimana kamu memastikan penonton membacanya?</p><button class="btn" onclick="location.reload()">Main lagi</button>`;scrollTo(0,0);return}
+ const z=Z[cur];
+ p.innerHTML=`<h2>${z.e} Zona ${cur+1}: ${z.n}</h2><p class="quest"><b>Misi utama:</b> ${z.quest}</p><div id="qs"></div><button class="btn" id="chk">Periksa jawaban</button><div id="res"></div>`;
+ const qs=z.q.map(mk);qs.forEach(e=>$("#qs").append(e));
+ $("#chk").onclick=function(){
+  let t=0,mx=0;qs.forEach(e=>{const r=e.sc();t+=r.s;mx+=e.pts;e.querySelector(".fb").innerHTML=`<b>${r.s}/${e.pts} poin.</b> ${r.key}`});
+  const need=Math.ceil(mx*.7),ok=t>=need;this.disabled=true;
+  $("#res").innerHTML=ok?`<div class="res ok"><h3>Lulus: ${t}/${mx} poin (minimal ${need})</h3><p>Kamu mendapat lencana ${z.e} <b>${z.b}</b> dan Kepingan Selendang ${R[cur]}.</p><button class="btn" id="nx">${cur==3?"Selesaikan ekspedisi":"Lanjut ke zona berikutnya"}</button></div>`
+  :`<div class="res bad"><h3>Belum lulus: ${t}/${mx} poin (minimal ${need})</h3><p><b>Kartu Petunjuk:</b> ${z.hint||"Diskusikan ulang rubrik dan contoh jawaban kuat, lalu perbaiki analisis kelompokmu."}</p><button class="btn" id="rt">Jalur Latihan (−5 poin)</button></div>`;
+  if(ok)$("#nx").onclick=()=>{zs[cur]=t;cur++;show();scrollTo(0,0)};
+  else $("#rt").onclick=()=>{pen+=5;show();scrollTo(0,0)};
+  $("#res").scrollIntoView({behavior:"smooth",block:"nearest"})};
+}
+show();
+</script>
+</body>
+</html>
